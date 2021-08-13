@@ -1,0 +1,8 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  padding: 50px 120px;
+  column-gap: 0px;
+  row-gap: 20px;
+}

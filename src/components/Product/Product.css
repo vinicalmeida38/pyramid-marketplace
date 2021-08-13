@@ -1,0 +1,32 @@
+.product-container {
+  border: 1px solid #f94f35;
+  width: 262px;
+  height: 352px;
+  cursor: pointer;
+}
+
+.product-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  padding: 8px;
+}
+
+.product-details {
+  border-top: 1px solid #f94f35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.product-details__name {
+  font-size: 14px;
+}
+
+.product-details__price {
+  font-weight: 400;
+  font-size: 28px;
+  margin: 0;
+}
