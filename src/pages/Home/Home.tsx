@@ -13,7 +13,13 @@ const Home = () => {
       <div className="product-grid">
         {productMocks.map((mock) => {
           return (
-            <Product name={mock.name} image={mock.image} price={mock.price} />
+            <Product
+              key={mock.id}
+              id={mock.id}
+              name={mock.name}
+              image={mock.image}
+              price={mock.price}
+            />
           );
         })}
       </div>
