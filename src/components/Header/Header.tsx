@@ -5,15 +5,16 @@ import { SEARCH_BAR_PLACEHOLDER } from "../../assets/constants";
 
 import { Search, ShoppingCart } from "react-feather";
 import Logo from "../../assets/images/pyramid_logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <div className="header-pyramid">
         <div>
-          <a href="/">
+          <Link to="/">
             <img src={Logo} alt="Pyramid Marketplace logo" />
-          </a>
+          </Link>
         </div>
         <div className="header-pyramid__search-container">
           <input
@@ -26,9 +27,9 @@ const Header = () => {
           </button>
         </div>
         <div>
-          <a href="/">
+          <Link to="/shopping-cart">
             <ShoppingCart color="white" />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="header-categories">

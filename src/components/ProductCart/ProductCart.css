@@ -1,0 +1,13 @@
+.product-cart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.product-cart__name {
+  font-size: 21px;
+}
+
+.product-cart__price {
+  font-size: 21px;
+}

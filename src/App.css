@@ -13,6 +13,11 @@ a {
   color: #000;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid #f94f35;
+}
+
 .button-pyramid {
   background-color: #f94f35;
   cursor: pointer;
@@ -26,4 +31,8 @@ a {
 
 .button-pyramid:hover {
   background-color: #e3242c;
+}
+
+.title-pyramid {
+  text-align: center;
 }
