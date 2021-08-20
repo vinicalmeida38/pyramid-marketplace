@@ -1,0 +1,13 @@
+.input-pyramid {
+  margin: 15px;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  margin-top: 20px;
+  margin-bottom: 0;
+}

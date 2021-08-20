@@ -58,3 +58,8 @@
   text-align: center;
   justify-content: center;
 }
+
+.header-pyramid__logo {
+  padding-bottom: 15px;
+  width: 100px;
+}
