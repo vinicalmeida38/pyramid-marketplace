@@ -1,0 +1,12 @@
+.shopping-cart__container {
+  background-color: #fff;
+  width: auto;
+  height: auto;
+  margin: 30px 50px 100px;
+  padding: 10px;
+}
+
+.shopping-cart__btn {
+  margin: 20px 0;
+  text-align: right;
+}

@@ -1,0 +1,27 @@
+.quantity-input {
+  border: 1px solid #8b8b8b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.quantity-input__increase-btn,
+.quantity-input__decrease-btn {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity-input__input {
+  height: 35px;
+  width: 50px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-weight: 700;
+}
+
+.quantity-input__input:disabled {
+  background-color: #fff;
+  color: #000;
+}
