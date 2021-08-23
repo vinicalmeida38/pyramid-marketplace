@@ -32,6 +32,12 @@ input {
   border: none;
 }
 
+.disabled-button-pyramid {
+  background-color: #ffbdb2;
+  pointer-events: none;
+  cursor: none;
+}
+
 .button-pyramid:hover {
   background-color: #e3242c;
 }
