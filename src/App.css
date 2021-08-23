@@ -3,7 +3,6 @@ html {
 }
 
 body {
-  background-color: #e5e5e5;
   margin: 0;
   padding: 0;
 }
@@ -18,6 +17,10 @@ hr {
   border-top: 1px solid #f94f35;
 }
 
+input {
+  font-family: inherit;
+}
+
 .button-pyramid {
   background-color: #f94f35;
   cursor: pointer;
@@ -29,10 +32,43 @@ hr {
   border: none;
 }
 
+.disabled-button-pyramid {
+  background-color: #ffbdb2;
+  pointer-events: none;
+  cursor: none;
+}
+
 .button-pyramid:hover {
   background-color: #e3242c;
 }
 
 .title-pyramid {
+  margin-top: 0;
   text-align: center;
+}
+
+.input-pyramid {
+  border: none;
+  border-bottom: 1px solid #f94f35;
+  width: 350px;
+  outline: none;
+}
+
+.input-pyramid::-webkit-input-placeholder {
+  font-family: "Work Sans", sans-serif;
+  color: #8b8b8b;
+  font-size: 14px;
+}
+
+.step-button {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.content-container {
+  background-color: #fff;
+  width: auto;
+  height: auto;
+  margin: 30px 50px 100px;
+  padding: 10px;
 }
