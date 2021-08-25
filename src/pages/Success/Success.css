@@ -1,0 +1,16 @@
+.success-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-page__title {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.success-page__btn {
+  margin-top: 20px;
+}
