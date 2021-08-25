@@ -2,6 +2,7 @@ import "./Address.css";
 
 import SimpleHeader from "../../components/Header/SimpleHeader";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Address = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,22 @@ const Address = () => {
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
   const [phone, setPhone] = useState("");
+
+  const checkEmptyInputs = () => {
+    if (
+      name === "" ||
+      CEP === "" ||
+      state === "" ||
+      city === "" ||
+      street === "" ||
+      district === "" ||
+      number === "" ||
+      complement === "" ||
+      phone === ""
+    ) {
+      return true;
+    }
+  };
 
   return (
     <>
@@ -107,24 +124,18 @@ const Address = () => {
 
           <div className="step-button">
             <hr />
-            <button
-              className={
-                name === "" ||
-                CEP === "" ||
-                state === "" ||
-                city === "" ||
-                street === "" ||
-                district === "" ||
-                number === "" ||
-                complement === "" ||
-                phone === ""
-                  ? "button-pyramid disabled-button-pyramid"
-                  : "button-pyramid"
-              }
-              type="submit"
-            >
-              Continuar
-            </button>
+            <Link to="/payment">
+              <button
+                className={
+                  checkEmptyInputs()
+                    ? "button-pyramid disabled-button-pyramid"
+                    : "button-pyramid"
+                }
+                type="submit"
+              >
+                Continuar
+              </button>
+            </Link>
           </div>
         </form>
       </div>
