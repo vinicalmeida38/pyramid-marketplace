@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader";
 import "./Payment.css";
 
@@ -55,9 +56,11 @@ const Payment = () => {
           <br />
           <hr />
           <div className="step-button">
-            <button className={buttonStyle} type="submit">
-              Finalizar compra
-            </button>
+            <Link to="/success">
+              <button className={buttonStyle} type="submit">
+                Finalizar compra
+              </button>
+            </Link>
           </div>
         </form>
       </div>

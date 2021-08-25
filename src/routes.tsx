@@ -5,6 +5,7 @@ import Cart from "./pages/Cart/Cart";
 import Home from "./pages/Home/Home";
 import Payment from "./pages/Payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Success from "./pages/Success/Success";
 
 const Routes = () => {
   return (
@@ -14,6 +15,7 @@ const Routes = () => {
       <Route component={Cart} path="/shopping-cart" />
       <Route component={Address} path="/address" />
       <Route component={Payment} path="/payment" />
+      <Route component={Success} path="/success" />
     </BrowserRouter>
   );
 };

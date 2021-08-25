@@ -2,6 +2,7 @@ import React from "react";
 import "./ProductDetails.css";
 
 import Header from "../../components/Header/Header";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   return (
@@ -27,12 +28,16 @@ const ProductDetails = () => {
           </p>
         </div>
         <div className="product-details__btns">
-          <button className="button-pyramid product-details__btns--buy">
-            Comprar
-          </button>
-          <button className="button-pyramid product-details__btns--cart">
-            Adicionar ao carrinho
-          </button>
+          <Link to="/payment">
+            <button className="button-pyramid product-details__btns--buy">
+              Comprar
+            </button>
+          </Link>
+          <Link to="/shopping-cart">
+            <button className="button-pyramid product-details__btns--cart">
+              Adicionar ao carrinho
+            </button>
+          </Link>
         </div>
       </div>
     </div>
