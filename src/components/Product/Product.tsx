@@ -19,7 +19,7 @@ const Product = ({ id, image, name, price }: IProduct) => {
           </div>
           <div className="product-details">
             <p className="product-details__name">{name}</p>
-            <p className="product-details__price">R${price}</p>
+            <p className="product-details__price">{price}</p>
           </div>
         </div>
       </Link>

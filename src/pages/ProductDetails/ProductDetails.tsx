@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ProductDetails.css";
 
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+interface IProducts {
+  id: string;
+  name: string;
+  image: string;
+  price: string;
+}
 
 const ProductDetails = () => {
+  const [product, setProduct] = useState<IProducts>();
+
+  useEffect(() => {
+    const productId = window.location.pathname.replace("/product-details/", "");
+    fetch(`/api/products/${productId}`)
+      .then((res) => res.json())
+      .then((json) => setProduct(json.product));
+  }, []);
+
   return (
     <div className="product-details__background">
       <Header />
       <div className="product-details__container">
         <div className="product-details__img">
-          <img
-            src="https://m.media-amazon.com/images/I/51p1FOjU-lL._AC_SX522_.jpg"
-            alt="Product"
-            width="375px"
-          />
+          <img src={product?.image} alt="Product" width="375px" />
         </div>
         <div className="product-details__detail">
-          <h2>Mouse multilaser</h2>
+          <h2>{product?.name}</h2>
           <h3>Descrição do produto</h3>
           <p>
             Aliquam blandit suscipit justo, a imperdiet mi ultrices at.
@@ -40,6 +53,7 @@ const ProductDetails = () => {
           </Link>
         </div>
       </div>
+      );
     </div>
   );
 };

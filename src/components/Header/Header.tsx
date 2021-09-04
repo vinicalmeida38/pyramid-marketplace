@@ -6,8 +6,11 @@ import { SEARCH_BAR_PLACEHOLDER } from "../../assets/constants";
 import { Search, ShoppingCart } from "react-feather";
 import Logo from "../../assets/images/pyramid_logo.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <header>
       <div className="header-pyramid">
@@ -21,6 +24,8 @@ const Header = () => {
             className="header-pyramid__search-bar"
             type="text"
             placeholder={SEARCH_BAR_PLACEHOLDER}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button className="header-pyramid__search-btn">
             <Search color="#F94F35" />
