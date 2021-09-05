@@ -12,6 +12,17 @@ const pyramidRoutes = (context: Server): void => {
     const productDetail = schema.products.find(productId) || null;
     return productDetail;
   });
+
+  context.post("/shopping-cart", (schema: any, request) => {
+    const content = JSON.parse(request.requestBody);
+    if (!schema.shoppingCarts.find(content.id)) {
+      return schema.shoppingCarts.create(content);
+    }
+  });
+
+  context.get("/shopping-cart", (schema: any) => {
+    return schema.shoppingCarts.all();
+  });
 };
 
 export default pyramidRoutes;

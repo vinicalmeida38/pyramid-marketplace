@@ -1,26 +1,37 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import "./ProductDetails.css";
 
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-interface IProducts {
+interface IProductsDetails {
   id: string;
   name: string;
+  description: string;
   image: string;
   price: string;
 }
 
 const ProductDetails = () => {
-  const [product, setProduct] = useState<IProducts>();
+  const [product, setProduct] = useState<IProductsDetails>();
 
   useEffect(() => {
     const productId = window.location.pathname.replace("/product-details/", "");
-    fetch(`/api/products/${productId}`)
-      .then((res) => res.json())
-      .then((json) => setProduct(json.product));
+    axios
+      .get(`/api/products/${productId}`)
+      .then((res) => setProduct(res.data.product));
   }, []);
+
+  const handleShoppingCart = () => {
+    axios.post("/api/shopping-cart", {
+      id: product?.id,
+      image: product?.image,
+      name: product?.name,
+      price: product?.price,
+    });
+  };
 
   return (
     <div className="product-details__background">
@@ -32,21 +43,15 @@ const ProductDetails = () => {
         <div className="product-details__detail">
           <h2>{product?.name}</h2>
           <h3>Descrição do produto</h3>
-          <p>
-            Aliquam blandit suscipit justo, a imperdiet mi ultrices at.
-            Curabitur tempus at magna et tempus. Donec pellentesque lorem vel
-            fringilla fermentum. Quisque non rutrum elit, a hendrerit sapien.
-            Proin pretium sem id tristique efficitur. Mauris elementum non nibh
-            in ullamcorper.
-          </p>
+          <p>{product?.description}</p>
         </div>
         <div className="product-details__btns">
-          <Link to="/payment">
+          <Link to="/address" onClick={() => handleShoppingCart()}>
             <button className="button-pyramid product-details__btns--buy">
               Comprar
             </button>
           </Link>
-          <Link to="/shopping-cart">
+          <Link to="/shopping-cart" onClick={() => handleShoppingCart()}>
             <button className="button-pyramid product-details__btns--cart">
               Adicionar ao carrinho
             </button>

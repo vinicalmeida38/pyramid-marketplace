@@ -72,3 +72,7 @@ input {
   margin: 30px 50px 100px;
   padding: 10px;
 }
+
+.disabled-link {
+  pointer-events: none;
+}

@@ -15,21 +15,18 @@ const Address = () => {
   const [complement, setComplement] = useState("");
   const [phone, setPhone] = useState("");
 
-  const checkEmptyInputs = () => {
-    if (
-      name === "" ||
-      CEP === "" ||
-      state === "" ||
-      city === "" ||
-      street === "" ||
-      district === "" ||
-      number === "" ||
-      complement === "" ||
-      phone === ""
-    ) {
-      return true;
-    }
-  };
+  const checkEmptyInputs =
+    name === "" ||
+    CEP === "" ||
+    state === "" ||
+    city === "" ||
+    street === "" ||
+    district === "" ||
+    number === "" ||
+    complement === "" ||
+    phone === ""
+      ? true
+      : false;
 
   return (
     <>
@@ -124,10 +121,13 @@ const Address = () => {
 
           <div className="step-button">
             <hr />
-            <Link to="/payment">
+            <Link
+              to="/payment"
+              className={checkEmptyInputs ? "disabled-link" : undefined}
+            >
               <button
                 className={
-                  checkEmptyInputs()
+                  checkEmptyInputs
                     ? "button-pyramid disabled-button-pyramid"
                     : "button-pyramid"
                 }

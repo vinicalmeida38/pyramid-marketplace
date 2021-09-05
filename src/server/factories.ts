@@ -9,6 +9,9 @@ const factories = {
     name() {
       return faker.lorem.words();
     },
+    description() {
+      return faker.lorem.text();
+    },
     image() {
       return faker.image.imageUrl(1000, 1000, "product", true);
     },

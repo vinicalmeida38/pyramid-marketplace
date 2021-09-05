@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 130px;
 }
 
 .quantity-input__increase-btn,

@@ -5,5 +5,5 @@ export default function seeds(server: Server) {
 }
 
 function createProduct(server: Server) {
-  server.createList("product", 25);
+  server.createList("product", 28);
 }
