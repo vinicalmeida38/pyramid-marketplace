@@ -5,17 +5,10 @@ import "./ProductDetails.css";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
-interface IProductsDetails {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: string;
-}
+import { IProductDetails } from "./ProductDetails.d";
 
 const ProductDetails = () => {
-  const [product, setProduct] = useState<IProductsDetails>();
+  const [product, setProduct] = useState<IProductDetails>();
 
   useEffect(() => {
     const productId = window.location.pathname.replace("/product-details/", "");

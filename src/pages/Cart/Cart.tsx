@@ -4,20 +4,15 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import ProductCart from "../../components/ProductCart/ProductCart";
 import "./Cart.css";
-
-interface ICart {
-  image: string;
-  name: string;
-  price: string;
-}
+import { IProductCart } from "../../components/ProductCart/ProductCart.d";
 
 const Cart = () => {
-  const [cart, setCart] = useState<ICart[]>([]);
+  const [cart, setCart] = useState<IProductCart[]>([]);
 
   useEffect(() => {
-    axios
-      .get("/api/shopping-cart")
-      .then((res) => setCart(res.data.shoppingCarts));
+    axios.get("/api/shopping-cart").then((res) => {
+      setCart(res.data.shoppingCarts);
+    });
   }, []);
 
   const cartHasItems = cart.length > 0 ? true : false;

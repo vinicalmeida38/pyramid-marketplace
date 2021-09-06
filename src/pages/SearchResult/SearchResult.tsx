@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react";
-import "./Home.css";
-
-import { IProduct } from "../../components/Product/Product.d";
-
+import React from "react";
+import { useLocation } from "react-router";
 import Header from "../../components/Header/Header";
 import Product from "../../components/Product/Product";
+import { IProduct } from "../../components/Product/Product.d";
 
-const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json.products));
-  }, []);
+const SearchResult = () => {
+  const location = useLocation();
+  const products = location.state as Array<IProduct>;
 
   return (
     <>
@@ -24,8 +17,8 @@ const Home = () => {
             <Product
               key={product.id}
               id={product.id}
-              name={product.name}
               image={product.image}
+              name={product.name}
               price={product.price}
             />
           );
@@ -35,4 +28,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SearchResult;

@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IProduct } from "./Product.d";
 import "./Product.css";
-
-interface IProduct {
-  id: string;
-  image: string;
-  name: string;
-  price: string;
-}
 
 const Product = ({ id, image, name, price }: IProduct) => {
   return (

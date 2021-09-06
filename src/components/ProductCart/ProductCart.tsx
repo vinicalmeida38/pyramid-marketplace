@@ -1,12 +1,8 @@
 import React from "react";
-import QuantityInput from "../QuantityInput/QuantityInput";
 import "./ProductCart.css";
 
-interface IProductCart {
-  image: string;
-  name: string;
-  price: string;
-}
+import QuantityInput from "../QuantityInput/QuantityInput";
+import { IProductCart } from "./ProductCart.d";
 
 const ProductCart = ({ image, name, price }: IProductCart) => {
   return (

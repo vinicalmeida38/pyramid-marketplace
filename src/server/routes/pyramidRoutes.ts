@@ -1,4 +1,5 @@
 import { Server } from "miragejs";
+import { IProduct } from "../../components/Product/Product.d";
 
 const pyramidRoutes = (context: Server): void => {
   context.namespace = "api";
@@ -11,6 +12,20 @@ const pyramidRoutes = (context: Server): void => {
     const productId = request.params.id;
     const productDetail = schema.products.find(productId) || null;
     return productDetail;
+  });
+
+  context.get("/products/search", (schema: any, request) => {
+    const foundProducts: IProduct[] = [];
+    const userSearch = request.queryParams.q;
+    const searchProducts = () => {
+      schema.products.findBy((product: IProduct) => {
+        if (product.name.includes(userSearch)) {
+          foundProducts.push(product);
+        }
+      });
+    };
+    searchProducts();
+    return foundProducts;
   });
 
   context.post("/shopping-cart", (schema: any, request) => {

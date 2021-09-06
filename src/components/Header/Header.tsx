@@ -1,15 +1,27 @@
 import React from "react";
+import axios from "axios";
 import "./Header.css";
 
 import { SEARCH_BAR_PLACEHOLDER } from "../../assets/constants";
-
 import { Search, ShoppingCart } from "react-feather";
 import Logo from "../../assets/images/pyramid_logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 
 const Header = () => {
   const [search, setSearch] = useState("");
+  const history = useHistory();
+
+  const handleSearch = (productSearched: String) => {
+    axios.get(`/api/products/search?q=${productSearched}`).then((res) => {
+      if (res.status === 200) {
+        history.push({
+          pathname: `/search?q=${productSearched}`,
+          state: res.data,
+        });
+      }
+    });
+  };
 
   return (
     <header>
@@ -27,7 +39,10 @@ const Header = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="header-pyramid__search-btn">
+          <button
+            className="header-pyramid__search-btn"
+            onClick={() => handleSearch(search)}
+          >
             <Search color="#F94F35" />
           </button>
         </div>
