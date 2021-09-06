@@ -46,7 +46,9 @@
   },
   "devDependencies": {
     "@types/faker": "^5.5.8",
+    "@types/uuid": "^8.3.1",
     "faker": "^5.5.3",
-    "miragejs": "^0.1.41"
+    "miragejs": "^0.1.41",
+    "uuid": "^8.3.2"
   }
 }

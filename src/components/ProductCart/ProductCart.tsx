@@ -2,9 +2,11 @@ import React from "react";
 import "./ProductCart.css";
 
 import QuantityInput from "../QuantityInput/QuantityInput";
-import { IProductCart } from "./ProductCart.d";
+import { IProductCartComponent } from "./ProductCart.d";
 
-const ProductCart = ({ image, name, price }: IProductCart) => {
+const ProductCart = ({
+  products: { image, name, price },
+}: IProductCartComponent) => {
   return (
     <div>
       <div className="product-cart">

@@ -1,10 +1,11 @@
 import * as faker from "faker";
 import { Factory } from "miragejs";
+import { v4 as uuidv4 } from "uuid";
 
 const factories = {
   product: Factory.extend({
     id() {
-      return faker.datatype.number({ min: 100, max: 10000 });
+      return uuidv4();
     },
     name() {
       return faker.lorem.words();

@@ -10,7 +10,7 @@ const pyramidRoutes = (context: Server): void => {
 
   context.get("/products/:id", (schema: any, request) => {
     const productId = request.params.id;
-    const productDetail = schema.products.find(productId) || null;
+    const productDetail = schema.products.find(productId);
     return productDetail;
   });
 
@@ -30,13 +30,27 @@ const pyramidRoutes = (context: Server): void => {
 
   context.post("/shopping-cart", (schema: any, request) => {
     const content = JSON.parse(request.requestBody);
-    if (!schema.shoppingCarts.find(content.id)) {
+    if (
+      !schema.shoppingCarts.findBy({ products: { id: content.products.id } })
+    ) {
       return schema.shoppingCarts.create(content);
     }
   });
 
   context.get("/shopping-cart", (schema: any) => {
     return schema.shoppingCarts.all();
+  });
+
+  context.del("/shopping-cart/:id", (schema: any, request) => {
+    const cartId = request.params.id;
+    const cart = schema.shoppingCarts.find(cartId);
+    const deleteCart = cart.destroy();
+    return deleteCart;
+  });
+
+  context.post("/checkout", (schema: any, request) => {
+    const content = JSON.parse(request.requestBody);
+    return schema.checkouts.create(content);
   });
 };
 

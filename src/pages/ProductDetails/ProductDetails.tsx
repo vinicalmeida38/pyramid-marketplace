@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IProductDetails } from "./ProductDetails.d";
+import { v4 as uuidv4 } from "uuid";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState<IProductDetails>();
@@ -19,10 +20,13 @@ const ProductDetails = () => {
 
   const handleShoppingCart = () => {
     axios.post("/api/shopping-cart", {
-      id: product?.id,
-      image: product?.image,
-      name: product?.name,
-      price: product?.price,
+      id: uuidv4(),
+      products: {
+        id: product?.id,
+        image: product?.image,
+        name: product?.name,
+        price: product?.price,
+      },
     });
   };
 

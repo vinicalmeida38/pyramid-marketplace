@@ -1,8 +1,8 @@
 import "./Address.css";
 
 import SimpleHeader from "../../components/Header/SimpleHeader";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Address = () => {
   const [name, setName] = useState("");
@@ -14,6 +14,7 @@ const Address = () => {
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
   const [phone, setPhone] = useState("");
+  const history = useHistory();
 
   const checkEmptyInputs =
     name === "" ||
@@ -28,6 +29,23 @@ const Address = () => {
       ? true
       : false;
 
+  const handleAddress = (event: FormEvent) => {
+    event.preventDefault();
+    history.push({
+      pathname: "/payment",
+      state: {
+        name: name,
+        cep: CEP,
+        state: state,
+        street: street,
+        district: district,
+        number: number,
+        complment: complement,
+        phone: phone,
+      },
+    });
+  };
+
   return (
     <>
       <SimpleHeader />
@@ -36,7 +54,10 @@ const Address = () => {
           <h1 className="title-pyramid">Endereço</h1>
         </div>
         <hr />
-        <form className="address-form">
+        <form
+          className="address-form"
+          onSubmit={(event) => handleAddress(event)}
+        >
           <input
             className="input-pyramid"
             type="text"
@@ -121,21 +142,16 @@ const Address = () => {
 
           <div className="step-button">
             <hr />
-            <Link
-              to="/payment"
-              className={checkEmptyInputs ? "disabled-link" : undefined}
+            <button
+              className={
+                checkEmptyInputs
+                  ? "button-pyramid disabled-button-pyramid"
+                  : "button-pyramid"
+              }
+              type="submit"
             >
-              <button
-                className={
-                  checkEmptyInputs
-                    ? "button-pyramid disabled-button-pyramid"
-                    : "button-pyramid"
-                }
-                type="submit"
-              >
-                Continuar
-              </button>
-            </Link>
+              Continuar
+            </button>
           </div>
         </form>
       </div>
