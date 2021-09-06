@@ -1,13 +1,24 @@
 .product-cart {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr;
+  column-gap: 10px;
   align-items: center;
+  margin: 10px;
+}
+
+.product-cart__name--col {
+  width: 45%;
+  border-spacing: 20px;
 }
 
 .product-cart__name {
   font-size: 21px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
 }
 
 .product-cart__price {
   font-size: 21px;
+  text-align: right;
 }

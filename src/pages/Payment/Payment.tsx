@@ -1,18 +1,42 @@
-import React from "react";
+import React, { FormEvent, useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader";
 import "./Payment.css";
 
 const Payment = () => {
-  const [creditCard, setCreditCard] = useState(false);
-  const [bankSlip, setBankSlip] = useState(false);
-  const [pix, setPix] = useState(false);
+  const [payment, setPayment] = useState("");
+  const [cart, setCart] = useState<Object>();
+  const location = useLocation();
+  const history = useHistory();
 
   const buttonStyle =
-    creditCard || bankSlip || pix
-      ? "button-pyramid"
-      : "button-pyramid disabled-button-pyramid";
+    payment === ""
+      ? "button-pyramid disabled-button-pyramid"
+      : "button-pyramid";
+
+  useEffect(() => {
+    axios.get("/api/shopping-cart").then((res) => {
+      setCart(res.data.shoppingCarts[0]);
+    });
+  }, []);
+
+  const handlePurchase = (event: FormEvent) => {
+    event.preventDefault();
+    axios
+      .post("/api/checkout", {
+        address: location.state,
+        payment: payment,
+        cart: cart,
+      })
+      .then((req) => {
+        history.push({
+          pathname: "/success",
+          state: req.data.checkout.cart.id,
+        });
+      });
+  };
 
   return (
     <>
@@ -20,13 +44,14 @@ const Payment = () => {
       <div className="content-container">
         <h1 className="title-pyramid">Pagamento</h1>
         <hr />
-        <form>
+        <form onSubmit={(event) => handlePurchase(event)}>
           <input
             className="payment-types__input"
             type="radio"
             name="payment"
             id="creditCard"
-            onChange={(e) => setCreditCard(true)}
+            value="Cartão de Crédito"
+            onChange={(e) => setPayment(e.target.value)}
           />
           <label className="payment-types__label" htmlFor="creditCard">
             Cartão de crédito
@@ -37,7 +62,8 @@ const Payment = () => {
             type="radio"
             name="payment"
             id="bankSlip"
-            onChange={(e) => setBankSlip(true)}
+            value="Boleto Bancário"
+            onChange={(e) => setPayment(e.target.value)}
           />
           <label className="payment-types__label" htmlFor="bankSlip">
             Boleto bancário
@@ -48,7 +74,8 @@ const Payment = () => {
             type="radio"
             name="payment"
             id="pix"
-            onChange={(e) => setPix(true)}
+            value="Pix"
+            onChange={(e) => setPayment(e.target.value)}
           />
           <label className="payment-types__label" htmlFor="pix">
             Pix
@@ -56,11 +83,9 @@ const Payment = () => {
           <br />
           <hr />
           <div className="step-button">
-            <Link to="/success">
-              <button className={buttonStyle} type="submit">
-                Finalizar compra
-              </button>
-            </Link>
+            <button className={buttonStyle} type="submit">
+              Finalizar compra
+            </button>
           </div>
         </form>
       </div>

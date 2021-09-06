@@ -5,3 +5,7 @@
   margin: 30px 50px 100px;
   padding: 10px;
 }
+
+.shopping-cart__empty-cart {
+  text-align: center;
+}
