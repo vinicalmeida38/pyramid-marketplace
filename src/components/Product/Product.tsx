@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IProduct } from "./Product.d";
+import { IProductComponent } from "./Product.d";
 import "./Product.css";
 
-const Product = ({ id, image, name, price }: IProduct) => {
+const Product = ({ id, image, name, price }: IProductComponent) => {
   return (
     <>
       <Link to={`/product-details/${id}`}>
