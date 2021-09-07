@@ -1,0 +1,26 @@
+.header-categories {
+  background-color: #1c52ad;
+  color: #fff;
+}
+
+.header-categories li {
+  list-style: none;
+  padding: 8px 10px;
+  font-weight: 300;
+}
+
+.header-categories li:hover {
+  background-color: #3f6fc1;
+  cursor: pointer;
+}
+
+.header-categories ul {
+  margin: 0;
+  padding-left: 80px;
+}
+
+.header-categories__menu {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}

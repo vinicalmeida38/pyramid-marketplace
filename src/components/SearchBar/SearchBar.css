@@ -1,0 +1,24 @@
+.header-pyramid__search-container {
+  display: flex;
+  align-items: center;
+  padding: 4px 18px;
+  background-color: #fff;
+}
+
+.header-pyramid__search-bar {
+  width: 650px;
+  height: 32px;
+  border: none;
+  outline: none;
+}
+
+.header-pyramid__search-bar::-webkit-input-placeholder {
+  font-family: "Work Sans", sans-serif;
+  color: #8b8b8b;
+}
+
+.header-pyramid__search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
