@@ -2,8 +2,15 @@ import Address from "./Address";
 import { shallow, ShallowWrapper } from "enzyme";
 import SimpleHeader from "../../components/Header/SimpleHeader";
 
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
+
 describe("Address Page", () => {
   let wrapper: ShallowWrapper;
+
   const inputIds = [
     "name",
     "cep",
@@ -25,7 +32,7 @@ describe("Address Page", () => {
   beforeEach(() => {
     wrapper = shallow(<Address />);
   });
-  it("should contains a Simple header component", () => {
+  it("should contains a Simple Header component", () => {
     expect(wrapper.find(SimpleHeader).length).toBe(1);
   });
 
@@ -44,14 +51,13 @@ describe("Address Page", () => {
     expect(wrapper.find("button").hasClass("button-pyramid")).toEqual(true);
   });
 
-  it("should be able to click on the Continue button", () => {
+  it("should be possible to click on the Continue button", () => {
     fillAllInputs();
     const clickContinueButton = wrapper.find("button").simulate("click");
     expect(clickContinueButton).toEqual({});
   });
 
-  // it("should call the handleAddress function on submit", () => {
-  //   const submitForm = wrapper.find("button").simulate("click");
-  //   expect(submitForm).toBeCalledWith(1);
-  // });
+  it("should be possible to do the on submit", () => {
+    wrapper.find("form").simulate("submit", { preventDefault: jest.fn() });
+  });
 });

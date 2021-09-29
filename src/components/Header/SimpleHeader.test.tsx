@@ -1,6 +1,6 @@
+import SimpleHeader from "./SimpleHeader";
 import { ShallowWrapper, shallow } from "enzyme";
 import { Link } from "react-router-dom";
-import SimpleHeader from "./SimpleHeader";
 
 describe("Simple Header Component", () => {
   let wrapper: ShallowWrapper;
@@ -8,7 +8,7 @@ describe("Simple Header Component", () => {
     wrapper = shallow(<SimpleHeader />);
   });
 
-  it("should render the Header component", () => {
+  it("should contain a header", () => {
     expect(wrapper.find("header").length).toBe(1);
   });
 

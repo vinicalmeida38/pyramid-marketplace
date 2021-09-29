@@ -19,7 +19,7 @@ const QuantityInput = () => {
   return (
     <div className="quantity-input">
       <button
-        className="quantity-input__increase-btn"
+        className="quantity-input__decrease-btn"
         onClick={() => decreaseQuantity(quantity)}
       >
         <Minus color={quantity === 1 ? "#bcbcbc" : "#f94f35"} />
@@ -33,7 +33,7 @@ const QuantityInput = () => {
         }}
       ></input>
       <button
-        className="quantity-input__decrease-btn"
+        className="quantity-input__increase-btn"
         onClick={() => increaseQuantity()}
       >
         <Plus color="#f94f35" />
