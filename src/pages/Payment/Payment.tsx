@@ -18,7 +18,7 @@ const Payment = () => {
 
   useEffect(() => {
     axios.get("/api/shopping-cart").then((res) => {
-      setCart(res.data.shoppingCarts[0]);
+      setCart(res.data.shoppingCarts);
     });
   }, []);
 
@@ -33,7 +33,6 @@ const Payment = () => {
       .then((req) => {
         history.push({
           pathname: "/success",
-          state: req.data.checkout.cart.id,
         });
       });
   };

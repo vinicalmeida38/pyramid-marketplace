@@ -48,11 +48,11 @@ const Cart = () => {
               return (
                 <ProductCart
                   key={product.id}
-                  products={{
-                    productId: product.products.productId,
-                    image: product.products.image,
-                    price: product.products.price,
-                    name: product.products.name,
+                  productDetails={{
+                    productId: product.productDetails.productId,
+                    image: product.productDetails.image,
+                    price: product.productDetails.price,
+                    name: product.productDetails.name,
                   }}
                 />
               );

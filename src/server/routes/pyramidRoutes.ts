@@ -4,6 +4,7 @@ import { IProduct } from "../../components/Product/Product.d";
 
 const pyramidRoutes = (context: Server): void => {
   context.namespace = "api";
+  let products: Array<String> = [];
 
   context.get("/products", (schema: any) => {
     return schema.products.all();
@@ -52,10 +53,9 @@ const pyramidRoutes = (context: Server): void => {
 
   context.post("/shopping-cart", (schema: any, request) => {
     const content = JSON.parse(request.requestBody);
-    if (
-      !schema.shoppingCarts.findBy({ products: { id: content.products.id } })
-    ) {
-      return schema.shoppingCarts.create(content);
+    if (!products.includes(content.id)) {
+      products.push(content.id);
+      return schema.shoppingCarts.create({ productDetails: content });
     }
   });
 
@@ -63,11 +63,8 @@ const pyramidRoutes = (context: Server): void => {
     return schema.shoppingCarts.all();
   });
 
-  context.del("/shopping-cart/:id", (schema: any, request) => {
-    const cartId = request.params.id;
-    const cart = schema.shoppingCarts.find(cartId);
-    const deleteCart = cart.destroy();
-    return deleteCart;
+  context.del("/shopping-cart", (schema: any, request) => {
+    return schema.shoppingCarts.all().destroy();
   });
 
   context.post("/checkout", (schema: any, request) => {

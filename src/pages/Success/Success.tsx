@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader";
 
 import checkCircle from "../../assets/images/check_circle.svg";
@@ -7,12 +7,10 @@ import "./Success.css";
 import axios from "axios";
 
 const Success = () => {
-  const location = useLocation();
   const history = useHistory();
-  const cartId = location.state;
 
   const handleSuccess = () => {
-    axios.delete(`/api/shopping-cart/${cartId}`).then(() => {
+    axios.delete("/api/shopping-cart").then(() => {
       history.push({ pathname: "/" });
     });
   };

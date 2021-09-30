@@ -5,7 +5,7 @@ import QuantityInput from "../QuantityInput/QuantityInput";
 import { IProductCartComponent } from "./ProductCart.d";
 
 const ProductCart = ({
-  products: { image, name, price },
+  productDetails: { image, name, price },
 }: IProductCartComponent) => {
   return (
     <div>
