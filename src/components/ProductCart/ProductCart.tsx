@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProductCart.css";
-
 import QuantityInput from "../QuantityInput/QuantityInput";
 import { IProductCartComponent } from "./ProductCart.d";
 

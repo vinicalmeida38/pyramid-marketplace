@@ -5,9 +5,6 @@ import checkCircle from "../../assets/images/check_circle.svg";
 import axios from "axios";
 
 jest.mock("react-router-dom", () => ({
-  useLocation: () => ({
-    state: "1",
-  }),
   useHistory: () => ({
     push: jest.fn(),
   }),
@@ -47,6 +44,6 @@ describe("Success Page", () => {
     const deleteCart = mockedAxios.delete.mockResolvedValue({});
     wrapper.find("button").simulate("click");
     expect(deleteCart).toHaveBeenCalledTimes(1);
-    expect(deleteCart).toHaveBeenCalledWith("/api/shopping-cart/1");
+    expect(deleteCart).toHaveBeenCalledWith("/api/shopping-cart");
   });
 });
