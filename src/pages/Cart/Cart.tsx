@@ -8,18 +8,21 @@ import { IProductCart } from "../../components/ProductCart/ProductCart.d";
 
 const Cart = () => {
   const [cart, setCart] = useState<IProductCart[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
   const history = useHistory();
 
   useEffect(() => {
+    console.log('bla')
     axios.get("/api/shopping-cart").then((res) => {
       setCart(res.data.shoppingCarts);
       setIsLoading(false);
     });
+    console.log('bla')
   }, []);
 
   const cartHasItems = cart.length > 0 ? true : false;
-
+  console.log(cart, 'CART');
+  console.log(isLoading, 'ISLOADING');
   const emptyCart = () => {
     if (isLoading === false) {
       return (
