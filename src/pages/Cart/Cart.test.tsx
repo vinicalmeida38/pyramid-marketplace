@@ -1,13 +1,29 @@
-import Cart from "./Cart";
+import axios from "axios";
 import { ShallowWrapper, shallow } from "enzyme";
 import { IProductCart } from "../../components/ProductCart/ProductCart.d";
-import React, { useState as useStateMock } from "react";
+import React from "react";
+import ProductCart from "../../components/ProductCart/ProductCart";
+import Cart from "./Cart";
+
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
+
+let useEffect: jest.SpyInstance;
+let useState: jest.SpyInstance;
 
 describe("Cart Page", () => {
   let wrapper: ShallowWrapper;
-  let useEffect: jest.SpyInstance;
   const mockUseEffect = () => {
-    useEffect.mockImplementationOnce((fn: Function) => fn());
+    useEffect = jest.spyOn(React, "useEffect");
+    useEffect.mockImplementation((fn: Function) => fn());
+  };
+
+  const mockUseState = (param: any) => {
+    useState = jest.spyOn(React, "useState");
+    useState.mockImplementation(() => [param, jest.fn()]);
   };
 
   const cartMock: IProductCart[] = [
@@ -20,23 +36,52 @@ describe("Cart Page", () => {
         price: "foo",
       },
     },
+    {
+      id: 1,
+      productDetails: {
+        productId: "foo",
+        image: "foo",
+        name: "foo",
+        price: "foo",
+      },
+    },
   ];
 
-  beforeEach(() => {
-    wrapper = shallow(<Cart />);
-  });
   it("should contain a title", () => {
+    wrapper = shallow(<Cart />);
     expect(wrapper.find("h1").length).toBe(1);
   });
 
-  it("test", () => {
-    const isLoading = React.useState;
-    const setLoading = jest.fn().mockReturnValue(false);
-    jest.spyOn(React, 'useState').mockImplementationOnce(() => isLoading(setLoading));
+  it("should get shopping cart from the service", () => {
+    axios.get = jest.fn().mockResolvedValue({ data: { shoppingCarts: [] } });
+    mockUseEffect();
+    mockUseState(false);
+    wrapper = shallow(<Cart />);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith("/api/shopping-cart");
+  });
 
-    wrapper = shallow(
-      <Cart />
+  it("should contain products in the shopping cart", () => {
+    mockUseState(cartMock);
+    wrapper = shallow(<Cart />);
+    expect(wrapper.find(ProductCart).length).toBe(2);
+  });
+
+  it("should contain an empty layout and the disabled buy button", () => {
+    mockUseState(false);
+    wrapper = shallow(<Cart />);
+    expect(wrapper.find(".shopping-cart__empty-cart").length).toBe(1);
+    expect(wrapper.find(".shopping-cart__empty-cart").text()).toEqual(
+      "Carrinho de compras vazio."
     );
-    console.log(wrapper.debug());
+    expect(
+      wrapper.find("button").hasClass("button-pyramid disabled-button-pyramid")
+    ).toBe(true);
+  });
+
+  it("should be possible to click on the buy button", () => {
+    mockUseState(cartMock);
+    wrapper = shallow(<Cart />);
+    wrapper.find("button").simulate("click");
   });
 });

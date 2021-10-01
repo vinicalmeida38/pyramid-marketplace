@@ -30,7 +30,7 @@ const Payment = () => {
         payment: payment,
         cart: cart,
       })
-      .then((req) => {
+      .then(() => {
         history.push({
           pathname: "/success",
         });

@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import "./Home.css";
 
 import { IProduct } from "../../components/Product/Product.d";
 
 import Header from "../../components/Header/Header";
 import Product from "../../components/Product/Product";
+import axios from "axios";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = React.useState([]);
 
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json.products));
+  React.useEffect(() => {
+    axios.get("/api/products").then((res) => setProducts(res.data.products));
   }, []);
 
   return (
@@ -22,7 +21,7 @@ const Home = () => {
         {products.map((product: IProduct) => {
           return (
             <Product
-              key={product.id}
+              key={`${product.id}-${product.name}`}
               id={product.id}
               name={product.name}
               image={product.image}

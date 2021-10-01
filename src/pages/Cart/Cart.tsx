@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
@@ -7,22 +7,18 @@ import "./Cart.css";
 import { IProductCart } from "../../components/ProductCart/ProductCart.d";
 
 const Cart = () => {
-  const [cart, setCart] = useState<IProductCart[]>([]);
+  const [cart, setCart] = React.useState<IProductCart[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const history = useHistory();
 
-  useEffect(() => {
-    console.log('bla')
+  React.useEffect(() => {
     axios.get("/api/shopping-cart").then((res) => {
       setCart(res.data.shoppingCarts);
       setIsLoading(false);
     });
-    console.log('bla')
   }, []);
 
   const cartHasItems = cart.length > 0 ? true : false;
-  console.log(cart, 'CART');
-  console.log(isLoading, 'ISLOADING');
   const emptyCart = () => {
     if (isLoading === false) {
       return (
