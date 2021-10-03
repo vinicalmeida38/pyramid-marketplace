@@ -12,10 +12,15 @@ const Cart = () => {
   const history = useHistory();
 
   React.useEffect(() => {
-    axios.get("/api/shopping-cart").then((res) => {
-      setCart(res.data.shoppingCarts);
-      setIsLoading(false);
-    });
+    axios
+      .get("/api/shopping-cart")
+      .then((res) => {
+        setCart(res.data.shoppingCarts);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   const cartHasItems = cart.length > 0 ? true : false;

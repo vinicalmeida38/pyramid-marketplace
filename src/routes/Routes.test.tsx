@@ -25,15 +25,15 @@ describe("Routes", () => {
     { path: "/search:q", component: SearchResult },
   ];
 
-  it("should contain a BrowserRouter", () => {
+  it("should contains a BrowserRouter", () => {
     expect(wrapper.find(BrowserRouter).length).toBe(1);
   });
 
-  it("should contain 7 Routes", () => {
+  it("should contains 7 Routes", () => {
     expect(wrapper.find(Route).length).toBe(7);
   });
 
-  it("should contain the correct Route components", () => {
+  it("should contains the correct Route components", () => {
     routes.forEach((route, index) => {
       expect(wrapper.find(Route).at(index).props().component).toEqual(
         route.component
@@ -41,7 +41,7 @@ describe("Routes", () => {
     });
   });
 
-  it("should contain the correct Route paths", () => {
+  it("should contains the correct Route paths", () => {
     routes.forEach((route, index) => {
       expect(wrapper.find(Route).at(index).props().path).toEqual(route.path);
     });

@@ -11,7 +11,12 @@ const Home = () => {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get("/api/products").then((res) => setProducts(res.data.products));
+    axios
+      .get("/api/products")
+      .then((res) => setProducts(res.data.products))
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   return (

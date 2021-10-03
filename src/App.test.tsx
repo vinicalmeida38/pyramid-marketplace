@@ -5,7 +5,7 @@ import Routes from "./routes/Routes";
 describe("App", () => {
   let wrapper: ShallowWrapper;
 
-  it("should contain Routes", () => {
+  it("should contains Routes", () => {
     wrapper = shallow(<App />);
     expect(wrapper.find(Routes).length).toBe(1);
   });

@@ -1,18 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Product from "../../components/Product/Product";
-import { IProduct } from "../../components/Product/Product.d";
+import { IProductComponent } from "../../components/Product/Product.d";
 
 const SearchResult = () => {
   const location = useLocation();
-  const products = location.state as Array<IProduct>;
+  const products = location.state as Array<IProductComponent>;
 
   return (
     <>
       <Header />
       <div className="product-grid">
-        {products.map((product: IProduct) => {
+        {products.map((product: IProductComponent) => {
           return (
             <Product
               key={product.id}

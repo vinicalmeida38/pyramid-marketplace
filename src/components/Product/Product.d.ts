@@ -13,3 +13,11 @@ export interface IProductComponent extends IProduct {
   type?: string;
   offer?: Boolean;
 }
+
+export interface IProductDetails {
+  id: string;
+  image: string;
+  description: string;
+  name: string;
+  price: string;
+}

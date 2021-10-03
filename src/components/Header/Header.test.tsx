@@ -15,20 +15,20 @@ describe("Header Component", () => {
     expect(wrapper.find("header").length).toBe(1);
   });
 
-  it("should contain a pyramid logo", () => {
+  it("should contains a pyramid logo", () => {
     expect(wrapper.find("img").length).toBe(1);
   });
 
-  it("should contain a Search Bar component", () => {
+  it("should contains a Search Bar component", () => {
     expect(wrapper.find(SearchBar).length).toBe(1);
   });
 
-  it("should contain a Shopping Cart Icon", () => {
+  it("should contains a Shopping Cart Icon", () => {
     expect(wrapper.find(ShoppingCart).length).toBe(1);
     expect(wrapper.find(ShoppingCart).prop("color")).toEqual("white");
   });
 
-  it("should contain a Categories section", () => {
+  it("should contains a Categories section", () => {
     expect(wrapper.find(Categories).length).toBe(1);
   });
 

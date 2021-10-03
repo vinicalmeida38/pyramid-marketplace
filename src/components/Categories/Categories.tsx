@@ -8,14 +8,17 @@ const Categories = ({ categories }: ICategoriesComponent) => {
   const history = useHistory();
 
   const handleCategory = (category: String) => {
-    axios.get(`/api/products/category?q=${category}`).then((res) => {
-      if (res.status === 200) {
+    axios
+      .get(`/api/products/category?q=${category}`)
+      .then((res) => {
         history.push({
           pathname: `/search?q=${category}`,
           state: res.data,
         });
-      }
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (

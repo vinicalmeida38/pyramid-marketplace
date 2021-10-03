@@ -40,13 +40,13 @@ describe("Address Page", () => {
     expect(wrapper.find("input").length).toBe(9);
   });
 
-  it("should have the Continue button disabled when all input was empty", () => {
+  it("should contains a button disabled when all input was empty", () => {
     expect(
       wrapper.find("button").hasClass("button-pyramid disabled-button-pyramid")
     ).toEqual(true);
   });
 
-  it("should have the Continue button enable when all input was filled", () => {
+  it("should contains a button enabled when all input was filled", () => {
     fillAllInputs();
     expect(wrapper.find("button").hasClass("button-pyramid")).toEqual(true);
   });
@@ -57,7 +57,7 @@ describe("Address Page", () => {
     expect(clickContinueButton).toEqual({});
   });
 
-  it("should be possible to do the on submit", () => {
+  it("should be possible to submit the address form", () => {
     wrapper.find("form").simulate("submit", { preventDefault: jest.fn() });
   });
 });

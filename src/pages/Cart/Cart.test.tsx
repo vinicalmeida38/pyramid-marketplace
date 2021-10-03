@@ -11,11 +11,12 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-let useEffect: jest.SpyInstance;
-let useState: jest.SpyInstance;
-
 describe("Cart Page", () => {
   let wrapper: ShallowWrapper;
+  let useEffect: jest.SpyInstance;
+  let useState: jest.SpyInstance;
+  console.error = jest.fn();
+
   const mockUseEffect = () => {
     useEffect = jest.spyOn(React, "useEffect");
     useEffect.mockImplementation((fn: Function) => fn());
@@ -47,7 +48,7 @@ describe("Cart Page", () => {
     },
   ];
 
-  it("should contain a title", () => {
+  it("should contains a title", () => {
     wrapper = shallow(<Cart />);
     expect(wrapper.find("h1").length).toBe(1);
   });
@@ -56,18 +57,27 @@ describe("Cart Page", () => {
     axios.get = jest.fn().mockResolvedValue({ data: { shoppingCarts: [] } });
     mockUseEffect();
     mockUseState(false);
-    wrapper = shallow(<Cart />);
+    shallow(<Cart />);
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith("/api/shopping-cart");
   });
 
-  it("should contain products in the shopping cart", () => {
+  it("should get shopping cart from the service with an error", () => {
+    axios.get = jest.fn().mockRejectedValue({});
+    mockUseEffect();
+    mockUseState(false);
+    shallow(<Cart />);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith("/api/shopping-cart");
+  });
+
+  it("should contains products in the shopping cart", () => {
     mockUseState(cartMock);
     wrapper = shallow(<Cart />);
     expect(wrapper.find(ProductCart).length).toBe(2);
   });
 
-  it("should contain an empty layout and the disabled buy button", () => {
+  it("should contains an empty layout and the disabled buy button", () => {
     mockUseState(false);
     wrapper = shallow(<Cart />);
     expect(wrapper.find(".shopping-cart__empty-cart").length).toBe(1);

@@ -8,19 +8,19 @@ describe("Quantity Input Component", () => {
     wrapper = shallow(<QuantityInput />);
   });
 
-  it("should contain a increase button", () => {
+  it("should contains a increase button", () => {
     expect(wrapper.find(".quantity-input__increase-btn").length).toBe(1);
   });
 
-  it("should contain a input field", () => {
+  it("should contains a input field", () => {
     expect(wrapper.find(".quantity-input__input").length).toBe(1);
   });
 
-  it("should contain a decrease button", () => {
+  it("should contains a decrease button", () => {
     expect(wrapper.find(".quantity-input__decrease-btn").length).toBe(1);
   });
 
-  it("should contain 1 product in the input field by default", () => {
+  it("should contains 1 product in the input field by default", () => {
     expect(wrapper.find(".quantity-input__input").props().value).toEqual(1);
   });
 
