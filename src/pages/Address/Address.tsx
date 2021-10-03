@@ -51,7 +51,9 @@ const Address = () => {
       <SimpleHeader />
       <div className="content-container">
         <div>
-          <h1 className="title-pyramid">Endereço</h1>
+          <h1 className="title-pyramid" data-test="title-pyramid">
+            Endereço
+          </h1>
         </div>
         <hr />
         <form

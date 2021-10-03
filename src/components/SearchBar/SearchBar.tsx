@@ -10,14 +10,17 @@ const SearchBar = () => {
   const history = useHistory();
 
   const handleSearch = (query: String) => {
-    axios.get(`/api/products/search?q=${query}`).then((res) => {
-      if (res.status === 200) {
+    axios
+      .get(`/api/products/search?q=${query}`)
+      .then((res) => {
         history.push({
           pathname: `/search?q=${query}`,
           state: res.data,
         });
-      }
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (

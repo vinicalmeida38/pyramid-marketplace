@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
@@ -7,19 +7,23 @@ import "./Cart.css";
 import { IProductCart } from "../../components/ProductCart/ProductCart.d";
 
 const Cart = () => {
-  const [cart, setCart] = useState<IProductCart[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [cart, setCart] = React.useState<IProductCart[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const history = useHistory();
 
-  useEffect(() => {
-    axios.get("/api/shopping-cart").then((res) => {
-      setCart(res.data.shoppingCarts);
-      setIsLoading(false);
-    });
+  React.useEffect(() => {
+    axios
+      .get("/api/shopping-cart")
+      .then((res) => {
+        setCart(res.data.shoppingCarts);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   const cartHasItems = cart.length > 0 ? true : false;
-
   const emptyCart = () => {
     if (isLoading === false) {
       return (
@@ -48,11 +52,11 @@ const Cart = () => {
               return (
                 <ProductCart
                   key={product.id}
-                  products={{
-                    productId: product.products.productId,
-                    image: product.products.image,
-                    price: product.products.price,
-                    name: product.products.name,
+                  productDetails={{
+                    productId: product.productDetails.productId,
+                    image: product.productDetails.image,
+                    price: product.productDetails.price,
+                    name: product.productDetails.name,
                   }}
                 />
               );

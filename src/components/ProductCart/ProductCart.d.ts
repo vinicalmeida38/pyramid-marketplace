@@ -1,6 +1,6 @@
 export interface IProductCart {
   id: number;
-  products: {
+  productDetails: {
     productId: string;
     image: string;
     name: string;

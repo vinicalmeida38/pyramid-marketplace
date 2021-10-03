@@ -1,32 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import "./ProductDetails.css";
-
 import Header from "../../components/Header/Header";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { IProductDetails } from "./ProductDetails.d";
-import { v4 as uuidv4 } from "uuid";
+import { useLocation, Link } from "react-router-dom";
+import { IProductDetails } from "../../components/Product/Product.d";
 
 const ProductDetails = () => {
-  const [product, setProduct] = useState<IProductDetails>();
+  const [product, setProduct] = React.useState<IProductDetails>();
+  const location = useLocation();
+  const productId = location.state;
 
-  useEffect(() => {
-    const productId = window.location.pathname.replace("/product-details/", "");
+  React.useEffect(() => {
     axios
       .get(`/api/products/${productId}`)
       .then((res) => setProduct(res.data.product));
-  }, []);
+  }, [productId]);
 
   const handleShoppingCart = () => {
     axios.post("/api/shopping-cart", {
-      id: uuidv4(),
-      products: {
-        id: product?.id,
-        image: product?.image,
-        name: product?.name,
-        price: product?.price,
-      },
+      id: product?.id,
+      image: product?.image,
+      name: product?.name,
+      price: product?.price,
     });
   };
 
@@ -38,9 +33,9 @@ const ProductDetails = () => {
           <img src={product?.image} alt="Product" width="375px" />
         </div>
         <div className="product-details__detail">
-          <h2>{product?.name}</h2>
-          <h3>Descrição do produto</h3>
-          <p>{product?.description}</p>
+          <h2 data-test="product-name">{product?.name}</h2>
+          <h3 data-test="product-description-title">Descrição do produto</h3>
+          <p data-test="product-description">{product?.description}</p>
         </div>
         <div className="product-details__btns">
           <Link to="/address" onClick={() => handleShoppingCart()}>
@@ -55,7 +50,6 @@ const ProductDetails = () => {
           </Link>
         </div>
       </div>
-      );
     </div>
   );
 };

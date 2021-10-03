@@ -1,26 +1,30 @@
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent } from "react";
 import axios from "axios";
-import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader";
 import "./Payment.css";
 
 const Payment = () => {
-  const [payment, setPayment] = useState("");
-  const [cart, setCart] = useState<Object>();
+  const [payment, setPayment] = React.useState("");
+  const [cart, setCart] = React.useState({});
   const location = useLocation();
   const history = useHistory();
+
+  React.useEffect(() => {
+    axios
+      .get("/api/shopping-cart")
+      .then((res) => {
+        setCart(res.data.shoppingCarts);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const buttonStyle =
     payment === ""
       ? "button-pyramid disabled-button-pyramid"
       : "button-pyramid";
-
-  useEffect(() => {
-    axios.get("/api/shopping-cart").then((res) => {
-      setCart(res.data.shoppingCarts[0]);
-    });
-  }, []);
 
   const handlePurchase = (event: FormEvent) => {
     event.preventDefault();
@@ -30,11 +34,13 @@ const Payment = () => {
         payment: payment,
         cart: cart,
       })
-      .then((req) => {
+      .then(() => {
         history.push({
           pathname: "/success",
-          state: req.data.checkout.cart.id,
         });
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
