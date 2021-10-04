@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "screeshotsFolder": "screenshots",
+  "waitForAnimations": false,
+  "chromeWebSecurity": false,
+  "video": false,
+  "viewportWidth": 1536,
+  "viewportHeight": 864
+}
