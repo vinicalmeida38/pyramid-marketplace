@@ -1,9 +1,10 @@
 {
   "baseUrl": "http://localhost:3000",
   "screeshotsFolder": "screenshots",
-  "waitForAnimations": false,
+  "waitForAnimations": true,
   "chromeWebSecurity": false,
   "video": false,
   "viewportWidth": 1536,
-  "viewportHeight": 864
+  "viewportHeight": 864,
+  "integrationFolder": "cypress/features"
 }
