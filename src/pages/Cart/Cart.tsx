@@ -38,7 +38,7 @@ const Cart = () => {
   };
 
   const handleCart = () => {
-    return history.push({ pathname: "/address" });
+    history.push("/address");
   };
 
   return (

@@ -4,11 +4,12 @@ import { IProductCart } from "../../components/ProductCart/ProductCart.d";
 import React from "react";
 import ProductCart from "../../components/ProductCart/ProductCart";
 import Cart from "./Cart";
+import { useHistory } from "react-router-dom";
+
+const addressUrl = "/address";
 
 jest.mock("react-router-dom", () => ({
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
+  useHistory: () => ({ push: jest.fn().mockImplementation(() => addressUrl) }),
 }));
 
 describe("Cart Page", () => {
@@ -90,8 +91,10 @@ describe("Cart Page", () => {
   });
 
   it("should be possible to click on the buy button", () => {
+    const history = useHistory();
     mockUseState(cartMock);
     wrapper = shallow(<Cart />);
     wrapper.find("button").simulate("click");
+    expect(history.push.call(1, addressUrl)).toBe(addressUrl);
   });
 });
