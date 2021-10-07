@@ -1,10 +1,13 @@
 import Address from "./Address";
 import { shallow, ShallowWrapper } from "enzyme";
 import SimpleHeader from "../../components/Header/SimpleHeader";
+import { useHistory } from "react-router-dom";
+
+const paymentUrl = "/payment";
 
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
-    push: jest.fn(),
+    push: jest.fn().mockImplementation(() => paymentUrl),
   }),
 }));
 
@@ -58,6 +61,8 @@ describe("Address Page", () => {
   });
 
   it("should be possible to submit the address form", () => {
+    const history = useHistory();
     wrapper.find("form").simulate("submit", { preventDefault: jest.fn() });
+    expect(history.push.call(1, paymentUrl)).toBe(paymentUrl);
   });
 });

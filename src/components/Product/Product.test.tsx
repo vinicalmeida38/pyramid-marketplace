@@ -1,10 +1,13 @@
 import Product from "./Product";
 import { ShallowWrapper, shallow } from "enzyme";
 import { IProductComponent } from "./Product.d";
+import { useHistory } from "react-router-dom";
+
+const productDetailsUrl = "/product-details/01";
 
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
-    push: jest.fn(),
+    push: jest.fn().mockImplementation(() => productDetailsUrl),
   }),
 }));
 
@@ -50,6 +53,8 @@ describe("Product Component", () => {
   });
 
   it("should be possible click on the product", () => {
+    const history = useHistory();
     wrapper.find("div").at(0).simulate("click");
+    expect(history.push.call(1, productDetailsUrl)).toBe(productDetailsUrl);
   });
 });
