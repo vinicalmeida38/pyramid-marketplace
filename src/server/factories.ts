@@ -15,7 +15,7 @@ const factories = {
       return faker.lorem.text();
     },
     image() {
-      return faker.image.imageUrl(1000, 1000, "product", true);
+      return faker.image.imageUrl(375, 375, "product", true);
     },
     price() {
       return faker.finance.amount(1, 5000, 2, "R$");
