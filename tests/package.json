@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome"
+    "cy:run": "cypress run --browser chrome",
+    "cy:integration": "cypress run --browser chrome --spec 'cypress/features/integration-tests/*.ts'",
+    "cy:e2e": "cypress run --browser chrome --spec 'cypress/features/e2e/*.ts'"
   },
   "devDependencies": {
     "cypress": "^8.5.0"
